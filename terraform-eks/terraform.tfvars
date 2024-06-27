@@ -1,0 +1,11 @@
+region             = "us-west-2"
+availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
+vpc_cidr           = "10.0.0.0/16"
+public_subnets     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+private_subnets    = ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
+eks_cluster_name   = "my-eks-cluster"
+eks_cluster_version = "1.21"
+node_instance_type  = "t3.medium"
+desired_capacity    = 2
+min_capacity        = 1
+max_capacity        = 3

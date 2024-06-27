@@ -1,0 +1,23 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: tsunami-scan-cronjob
+spec:
+  schedule: "0 0 * * 0"  # Run at midnight (00:00) every Sunday (0)
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: tsunami-scan-container
+            image: your/tsunami-script-image:latest  # Replace with your Python script image
+            volumeMounts:
+            - name: kubeconfig-volume
+              mountPath: /root/.kube/config  # Mount path for kubeconfig inside the container
+              subPath: config
+          restartPolicy: OnFailure
+          volumes:
+          - name: kubeconfig-volume
+            secret:
+              secretName: kubeconfig-secret  # Replace with your kubeconfig Secret name
+              defaultMode: 420 
